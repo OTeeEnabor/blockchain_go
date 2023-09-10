@@ -14,7 +14,7 @@ func LoadStatic(app *echo.Echo) {
 	// get file path
 	filePath := filepath.Dir(path)
 	// store  template folder path into variable (CLOUD server)
-	staticFolder := fmt.Sprintf("%v/repository/assets/*",filePath)
+	staticFolder := fmt.Sprintf("%v/repository/assets",filePath)
 	// load static path
 	app.Static("static", staticFolder)
 
