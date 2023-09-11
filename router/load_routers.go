@@ -6,5 +6,8 @@ import (
 )
 
 func LoadAllRouters(app *echo.Echo) {
+	// index router
 	http.IndexRouter(app)
+	// form/post router
+	http.FormRouter(app)
 }
