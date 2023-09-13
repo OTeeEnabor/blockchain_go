@@ -10,4 +10,6 @@ func LoadAllRouters(app *echo.Echo) {
 	http.IndexRouter(app)
 	// form/post router
 	http.FormRouter(app)
+	// details router
+	http.DetailRouter(app)
 }
