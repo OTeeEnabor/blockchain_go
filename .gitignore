@@ -17,6 +17,7 @@ blockchain.md
 *.dylib
 .air.toml
 tmp
+*.yaml
 
 # Test binary, built with `go test -c`
 *.test
