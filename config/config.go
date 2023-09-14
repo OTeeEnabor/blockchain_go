@@ -2,6 +2,8 @@ package config
 
 import (
 	"fmt"
+	"os"
+	"path/filepath"
 
 	"github.com/spf13/viper"
 )
@@ -19,9 +21,15 @@ func Init(env string) {
 
 	// set the config file name
 	config.SetConfigName(env)
+	// set file name
+	path, _ := os.Executable()
+	// get file path
+	filePath := filepath.Dir(path)
+	// store  template folder path into variable (CLOUD server)
+	configFolder := fmt.Sprintf("%v/config/",filePath)
 
-	// set config file path
-	config.AddConfigPath("config/")
+	// set config folder path
+	config.AddConfigPath(configFolder)
 	
 	// find file folder
 	err = config.ReadInConfig()
