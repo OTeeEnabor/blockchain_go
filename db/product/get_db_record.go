@@ -22,10 +22,16 @@ func GetProductDetails(productID string) (map[string]interface{}, error) {
 
 	if result.Error == nil {
 		return map[string]interface{}{
-			"product_id": product.ProductID,
-			"colour": product.Colour,
-			"quantity": product.Quantity,
-			"timestamp": product.Timestamp,
+			"product_id":         product.ProductID,
+			"colour":             product.Colour,
+			"quantity":           product.Quantity,
+			"timestamp":          product.Timestamp,
+			"contract_id":        product.ContractIdString,
+			"gas_used":           product.GasUsed,
+			"transaction_id":     product.TransactionId,
+			"transaction_fee":    product.ChargeFee,
+			"payer_account":      product.PayerAccount,
+			"transaction_status": product.Status,
 		}, nil	
 	}
 	return map[string]interface{}{}, err

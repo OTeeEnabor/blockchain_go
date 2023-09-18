@@ -10,7 +10,5 @@ func IndexContext(c echo.Context) error {
 	//  create index context function
 	// input parameter is an echo interface
 	// returns a HTTP status code with a string
-	return c.Render(http.StatusOK, "index.html", map[string]interface{}{
-		"name": "Oselu",
-	})
+	return c.Render(http.StatusOK, "index.html", map[string]interface{}{})
 }

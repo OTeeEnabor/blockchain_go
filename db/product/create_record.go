@@ -4,35 +4,46 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/OTeeEnabor/blockchain_go/db"
+	database "github.com/OTeeEnabor/blockchain_go/db"
 	"github.com/OTeeEnabor/blockchain_go/models"
+	"github.com/hashgraph/hedera-sdk-go/v2"
 )
 
-func CreateRecord(productID string , cornColour string, quantity int64, timeStamp time.Time) error{
+//  this function creates a record on the database
 
-	// connect to database
-	db, err := db.ConnectToDb()
-	
-	// if error occurred 
+func CreateRecord(productID string, cornColour string, quantity int64, timestamp time.Time, contractId *hedera.ContractID, contractIdString string, gasUsed uint64, transactionId string, chargeFee string, payerAccount string, status string) error {
+	// try to connect to database using DNS config in
+	// environment variables
+	db, err := database.ConnectToDb()
+
+	//if database is not found, return error
 	if err != nil {
-		// print out error message
 		fmt.Println("Failed to connect to database")
-		// return err
 		return err
 	}
 
-	// migrate the schema, 
-	// create table - if table is not in database
+	// Migrate the database schema
+	// this will create the table products if it does not exit
 	db.AutoMigrate(&models.Products{})
 
-	// Create the record and store it in the Products table
+	//this will make use of the unmarshal and unmarshal
+	cID := models.ContractID(*contractId)
+
+	//declare what record to save in the products database table
 	db.Create(&models.Products{
-		ProductID: productID,
-		Colour: cornColour,
-		Quantity: quantity,
-		Timestamp: timeStamp,
+		ProductID:        productID,
+		Colour:           cornColour,
+		Quantity:         quantity,
+		Timestamp:        timestamp,
+		ContractId:       &cID,
+		ContractIdString: contractIdString,
+		GasUsed:          gasUsed,
+		TransactionId:    transactionId,
+		ChargeFee:        chargeFee,
+		PayerAccount:     payerAccount,
+		Status:           status,
+		CreatedAt:        time.Now(),
 	})
 
 	return nil
-
 }
