@@ -20,9 +20,7 @@ func main() {
 	// define URL
 	router.LoadAllRouters(app)
 
-	// setup the server 
+	// start the server 
 	server.RunServer(app)
-	
-	// start the server
-	app.Start(":3000")
+
 }

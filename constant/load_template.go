@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"html/template"
 	"io"
+
 	"os"
 	"path/filepath"
 
@@ -28,11 +29,11 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 }
 // define where to find template folder
 func LoadTemplate() *Template {
-	// //  get app path
+	//  get app path
 	path, _ := os.Executable()
-	// // get file path
+	// get file path
 	filePath := filepath.Dir(path)
-	// // store  template folder path into variable (CLOUD server)
+	// store  template folder path into variable (CLOUD server)
 	templateFolder := fmt.Sprintf("%v/repository/templates/*",filePath)
 
 	template := &Template{

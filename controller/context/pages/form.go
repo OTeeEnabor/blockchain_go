@@ -21,17 +21,20 @@ func FormContext(c echo.Context) error {
 
 	//  get colour form entry
 	cornColour :=c.FormValue("corn_colour")
-	fmt.Printf("%v,%v,%v", productID, quantity,cornColour)
+
+	// fmt.Printf("%v,%v,%v", productID, quantity,cornColour)
 
 	//  convert quantity from string to correct int64
 	numQuantity, _ := strconv.ParseInt(quantity, 10, 64)
 
 	// read contract
+
 	// deploy contract if it has not been deployed before
 	record := contract.DeployContract(productID)
+
 	hederaContractID := hedera.ContractID(*record.ContractId)
 
-	// save record in hedera blockchain
+	// save record in hera blockchain
 	blockchainRecord, err := blockchain.SetContractRecord(hederaContractID, productID, cornColour, numQuantity)
 
 	// check for error in saving the blockchain record

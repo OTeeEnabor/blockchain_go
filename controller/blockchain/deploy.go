@@ -9,12 +9,12 @@ import (
 
 // create a contract data struct
 type ContractData struct {
-	Data Data `json:"data`
+	Data Data `json:"data"`
 }
 
 // create Data struct
 type Data struct {
-	Bytecode Bytecode `json"bytecode`
+	Bytecode Bytecode `json:"bytecode"`
 }
 
 // create contract Bytecode type

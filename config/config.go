@@ -25,7 +25,7 @@ func Init(env string) {
 	path, _ := os.Executable()
 	// // get file path
 	filePath := filepath.Dir(path)
-	// // store  template folder path into variable (CLOUD server)
+	// store  template folder path into variable (CLOUD server)
 	configFolder := fmt.Sprintf("%v/config/",filePath)
 
 	// set config folder path
